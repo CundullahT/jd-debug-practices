@@ -32,7 +32,11 @@ public class UserController {
 
     @PostMapping("/create")
     public String insertUser(UserDTO user,Model model){
-        userService.save(user);
+        try {
+            userService.save(user);
+        } catch (TicketingProjectException e) {
+            e.printStackTrace();
+        }
         return "redirect:/user/create";
     }
 //
